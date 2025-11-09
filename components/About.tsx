@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { getAssetPath } from '@/utils/path'
 
 export default function About() {
   const containerVariants = {
@@ -48,7 +49,7 @@ export default function About() {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary-400 to-primary-600 rounded-lg transform rotate-6"></div>
                 <div className="relative w-full h-full bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden">
                   <Image
-                    src="/images/profile-picture.JPG"
+                    src={getAssetPath("/images/profile-picture.JPG")}
                     alt="Chen Hsin Chiang Profile Picture"
                     fill
                     className="object-cover"

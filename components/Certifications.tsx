@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { useState } from 'react'
 import { FaExpand } from 'react-icons/fa'
+import { getAssetPath } from '@/utils/path'
 
 export default function Certifications() {
   const [enlargedImage, setEnlargedImage] = useState<{
@@ -44,7 +45,7 @@ export default function Certifications() {
       institution: 'University of Pennsylvania',
       description: 'Mechanical Engineering & Applied Mechanics, Mechatronic & Robotic Systems',
       year: '2023-2025',
-      image: '/images/upenn_diploma.jpg',
+      image: getAssetPath('/images/upenn_diploma.jpg'),
       alt: 'University of Pennsylvania Master of Science in Engineering Diploma',
     },
     {
@@ -52,7 +53,7 @@ export default function Certifications() {
       institution: 'University of Toronto',
       description: 'Mechanical Engineering, Minor in Robotics and Mechatronics',
       year: '2018 - 2023',
-      image: '/images/uteng-mechanical-composite-2022-2023.jpg',
+      image: getAssetPath('/images/uteng-mechanical-composite-2022-2023.jpg'),
       alt: 'UTENG Mechanical Engineering Composite 2022-2023',
     },
     {
@@ -60,7 +61,7 @@ export default function Certifications() {
       institution: 'Dassault Systèmes',
       description: 'Mechanical Design at the level of ASSOCIATE - Academic exam at University of Toronto. Certificate License Code: C-VTBZJQ58HW',
       year: 'November 22, 2019',
-      image: '/images/solidworks-certificate.jpg',
+      image: getAssetPath('/images/solidworks-certificate.jpg'),
       alt: 'SOLIDWORKS Mechanical Design Associate Certificate - C-VTBZJQ58HW',
     },
   ]

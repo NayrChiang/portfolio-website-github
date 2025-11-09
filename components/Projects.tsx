@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { projectsData } from '@/data/projects'
 import { useState } from 'react'
+import { getAssetPath } from '@/utils/path'
 
 const INITIAL_PROJECTS_COUNT = 4
 
@@ -95,7 +96,7 @@ export default function Projects() {
               >
                 <div className="relative h-48 overflow-hidden">
                   <Image
-                    src={project.image}
+                    src={getAssetPath(project.image)}
                     alt={project.title}
                     fill
                     className="object-cover"

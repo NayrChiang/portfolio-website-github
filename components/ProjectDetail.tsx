@@ -8,6 +8,7 @@ import { useState, useRef, useEffect } from 'react'
 import Navigation from '@/components/Navigation'
 import ModelViewer from '@/components/ModelViewer'
 import { Project } from '@/data/projects'
+import { getAssetPath } from '@/utils/path'
 
 interface ProjectDetailProps {
   project: Project
@@ -111,7 +112,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
               onClick={(e) => e.stopPropagation()}
             >
               <Image
-                src={enlargedImage.src}
+                src={getAssetPath(enlargedImage.src)}
                 alt={enlargedImage.alt}
                 width={1920}
                 height={1080}
@@ -253,12 +254,12 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                           <div 
                             className="relative w-full bg-gray-200 dark:bg-gray-700"
                             style={{ aspectRatio: '3/4' }}
-                            onClick={() => openImageModal(firstPhoto.src, firstPhoto.alt)}
+                            onClick={() => openImageModal(getAssetPath(firstPhoto.src), firstPhoto.alt)}
                           >
                             {!imageErrors[`photo-0`] ? (
                               <>
                                 <Image
-                                  src={firstPhoto.src}
+                                  src={getAssetPath(firstPhoto.src)}
                                   alt={firstPhoto.alt}
                                   fill
                                   className="object-cover"
@@ -323,7 +324,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                                 {!imageErrors[`cad-0`] ? (
                                   <>
                                     <Image
-                                      src={firstCadModel.src}
+                                      src={getAssetPath(firstCadModel.src)}
                                       alt={firstCadModel.alt}
                                       fill
                                       className="object-cover"
@@ -508,16 +509,16 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                         <>
                           <div className="relative w-full aspect-video bg-gray-900">
                             <AutoPauseVideo
-                              src={simVideo.src}
+                              src={getAssetPath(simVideo.src)}
                               controls
                               controlsList="nodownload"
                               className="w-full h-full object-contain"
-                              poster={simVideo.thumbnail}
+                              poster={simVideo.thumbnail ? getAssetPath(simVideo.thumbnail) : undefined}
                               preload="metadata"
                               playsInline
                               loop
                             >
-                              <source src={simVideo.src} type="video/mp4" />
+                              <source src={getAssetPath(simVideo.src)} type="video/mp4" />
                               Your browser does not support the video tag.
                             </AutoPauseVideo>
                           </div>
@@ -567,17 +568,17 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                         return opVideo ? (
                           <>
                             <div className="relative w-full aspect-video bg-gray-900">
-                              <AutoPauseVideo
-                                src={opVideo.src}
+                                <AutoPauseVideo
+                                src={getAssetPath(opVideo.src)}
                                 controls
                                 controlsList="nodownload"
                                 className="w-full h-full object-contain"
-                                poster={opVideo.thumbnail}
+                                poster={opVideo.thumbnail ? getAssetPath(opVideo.thumbnail) : undefined}
                                 preload="metadata"
                                 playsInline
                                 loop
                               >
-                                <source src={opVideo.src} type="video/mp4" />
+                                <source src={getAssetPath(opVideo.src)} type="video/mp4" />
                                 Your browser does not support the video tag.
                               </AutoPauseVideo>
                             </div>
@@ -634,7 +635,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                           {!imageErrors['objective-img'] ? (
                             <>
                               <Image
-                                src={firstImage.src}
+                                src={getAssetPath(firstImage.src)}
                                 alt={firstImage.alt}
                                 fill
                                 className="object-contain"
@@ -745,7 +746,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                             {!imageErrors[`photo-meam5100-0`] ? (
                               <>
                                 <Image
-                                  src={firstPhoto.src}
+                                  src={getAssetPath(firstPhoto.src)}
                                   alt={firstPhoto.alt}
                                   fill
                                   className="object-cover"
@@ -792,7 +793,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                             {!imageErrors[`cad-meam5100-0`] ? (
                               <>
                                 <Image
-                                  src={firstCadModel.src}
+                                  src={getAssetPath(firstCadModel.src)}
                                   alt={firstCadModel.alt}
                                   fill
                                   className="object-cover"
@@ -849,7 +850,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                           <div key={idx} className="bg-gray-50 dark:bg-slate-800 rounded-lg overflow-hidden">
                             <div className="relative w-full aspect-video bg-gray-900">
                               <AutoPauseVideo
-                                src={video.src}
+                                src={getAssetPath(video.src)}
                                 controls
                                 controlsList="nodownload"
                                 className="w-full h-full object-contain"
@@ -857,7 +858,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                                 playsInline
                                 loop
                               >
-                                <source src={video.src} type="video/mp4" />
+                                <source src={getAssetPath(video.src)} type="video/mp4" />
                               </AutoPauseVideo>
                             </div>
                             {video.title && (
@@ -912,7 +913,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                             {!imageErrors[0] ? (
                               <>
                                 <Image
-                                  src={firstImage.src}
+                                  src={getAssetPath(firstImage.src)}
                                   alt={firstImage.alt}
                                   fill
                                   className="object-contain"
@@ -963,7 +964,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                             {!imageErrors[1] ? (
                               <>
                                 <Image
-                                  src={secondImage.src}
+                                  src={getAssetPath(secondImage.src)}
                                   alt={secondImage.alt}
                                   fill
                                   className="object-contain"
@@ -1170,7 +1171,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                         {!imageErrors['mie320-0'] ? (
                           <>
                             <Image
-                              src={firstImage.src}
+                              src={getAssetPath(firstImage.src)}
                               alt={firstImage.alt}
                               fill
                               className="object-contain"
@@ -1220,7 +1221,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                         {!imageErrors['mie320-1'] ? (
                           <>
                             <Image
-                              src={secondImage.src}
+                              src={getAssetPath(secondImage.src)}
                               alt={secondImage.alt}
                               fill
                               className="object-contain"
@@ -1281,7 +1282,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                       {!imageErrors[`circuit-${idx}`] ? (
                         <>
                           <Image
-                            src={img.src}
+                            src={getAssetPath(img.src)}
                             alt={img.alt}
                             fill
                             className="object-contain"
@@ -1443,7 +1444,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                 <div className="bg-gray-50 dark:bg-slate-800 rounded-lg overflow-hidden">
                   <div className="relative w-full aspect-video bg-gray-900">
                     <AutoPauseVideo
-                      src={firstVideo.src}
+                      src={getAssetPath(firstVideo.src)}
                       controls
                       controlsList="nodownload"
                       className="w-full h-full object-contain"
@@ -1452,7 +1453,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                       playsInline
                       loop
                     >
-                      <source src={firstVideo.src} type="video/mp4" />
+                      <source src={getAssetPath(firstVideo.src)} type="video/mp4" />
                       Your browser does not support the video tag.
                     </AutoPauseVideo>
                   </div>
@@ -1517,7 +1518,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                       <div className="md:col-span-3 bg-gray-50 dark:bg-slate-800 rounded-lg overflow-hidden">
                         <div className="relative w-full aspect-video bg-gray-900">
                           <AutoPauseVideo
-                            src={firstVideo.src}
+                            src={getAssetPath(firstVideo.src)}
                             controls
                             controlsList="nodownload"
                             className="w-full h-full object-contain"
@@ -1525,7 +1526,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                             playsInline
                             loop
                           >
-                            <source src={firstVideo.src} type="video/mp4" />
+                            <source src={getAssetPath(firstVideo.src)} type="video/mp4" />
                             Your browser does not support the video tag.
                           </AutoPauseVideo>
                         </div>
@@ -1608,7 +1609,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                             {!imageErrors['fea-shaft'] ? (
                               <>
                                 <Image
-                                  src={firstImage.src}
+                                  src={getAssetPath(firstImage.src)}
                                   alt={firstImage.alt}
                                   fill
                                   className="object-contain"
@@ -1656,7 +1657,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                             {!imageErrors['fea-gear'] ? (
                               <>
                                 <Image
-                                  src={secondImage.src}
+                                  src={getAssetPath(secondImage.src)}
                                   alt={secondImage.alt}
                                   fill
                                   className="object-contain"
@@ -1733,7 +1734,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                         {!imageErrors['grain-microscopy'] ? (
                           <>
                             <Image
-                              src={secondImage.src}
+                              src={getAssetPath(secondImage.src)}
                               alt={secondImage.alt}
                               fill
                               className="object-contain"
@@ -1790,7 +1791,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                               {!imageErrors['tensile-strength'] ? (
                                 <>
                                   <Image
-                                    src={fourthImage.src}
+                                    src={getAssetPath(fourthImage.src)}
                                     alt={fourthImage.alt}
                                     fill
                                     className="object-contain"
@@ -1838,7 +1839,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                               {!imageErrors['yield-strength'] ? (
                                 <>
                                   <Image
-                                    src={thirdImage.src}
+                                    src={getAssetPath(thirdImage.src)}
                                     alt={thirdImage.alt}
                                     fill
                                     className="object-contain"
@@ -1898,7 +1899,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                         {!imageErrors[2] ? (
                           <>
                             <Image
-                              src={thirdImage.src}
+                              src={getAssetPath(thirdImage.src)}
                               alt={thirdImage.alt}
                               fill
                               className="object-contain"
@@ -2020,7 +2021,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                     <div className="relative w-full aspect-video bg-gray-200 dark:bg-gray-700">
                       {!imageErrors[`photo-${idx}`] ? (
                         <Image
-                          src={photo.src}
+                          src={getAssetPath(photo.src)}
                           alt={photo.alt}
                           fill
                           className="object-cover"
@@ -2069,7 +2070,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                       {!imageErrors[`cad-${idx}`] ? (
                         <>
                           <Image
-                            src={cad.src}
+                            src={getAssetPath(cad.src)}
                             alt={cad.alt}
                             fill
                             className="object-contain"
@@ -2129,7 +2130,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                       {!imageErrors[`eng-drawing-${idx}`] ? (
                         <>
                           <Image
-                            src={img.src}
+                            src={getAssetPath(img.src)}
                             alt={img.alt}
                             fill
                             className="object-contain"
@@ -2187,13 +2188,13 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                       <div className="relative w-full aspect-video bg-gray-900">
                         {video.src.endsWith('.gif') ? (
                           <img
-                            src={video.src}
+                            src={getAssetPath(video.src)}
                             alt={video.title}
                             className="w-full h-full object-contain"
                           />
                         ) : (
                           <AutoPauseVideo
-                            src={video.src}
+                            src={getAssetPath(video.src)}
                             controls
                             controlsList="nodownload"
                             className="w-full h-full object-contain"
@@ -2202,7 +2203,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                             playsInline
                             loop
                           >
-                            <source src={video.src} type="video/mp4" />
+                            <source src={getAssetPath(video.src)} type="video/mp4" />
                             Your browser does not support the video tag.
                           </AutoPauseVideo>
                         )}
@@ -2265,7 +2266,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                   >
                     <div className="relative w-full aspect-video bg-gray-900">
                       <AutoPauseVideo
-                        src={video.src}
+                        src={getAssetPath(video.src)}
                         controls
                         controlsList="nodownload"
                         className="w-full h-full object-contain"
@@ -2274,7 +2275,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                         playsInline
                         loop
                       >
-                        <source src={video.src} type="video/mp4" />
+                        <source src={getAssetPath(video.src)} type="video/mp4" />
                         Your browser does not support the video tag.
                       </AutoPauseVideo>
                     </div>

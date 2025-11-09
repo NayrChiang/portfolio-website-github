@@ -15,6 +15,9 @@ const nextConfig = {
     domains: ['images.unsplash.com', 'github.com'],
     // Required for static export
     unoptimized: true,
+    // Custom loader to handle basePath for static export
+    loader: 'custom',
+    loaderFile: './utils/imageLoader.ts',
   },
   webpack: (config) => {
     config.module.rules.push({
