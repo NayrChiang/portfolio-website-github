@@ -83,6 +83,46 @@ portfolio-website-github/
 └── package.json           # Dependencies
 ```
 
+## Deployment to GitHub Pages
+
+### Automatic Deployment (Recommended)
+
+1. Go to your repository Settings → Pages
+2. Under "Source", select "GitHub Actions"
+3. Push to the `main` branch - the GitHub Action will automatically build and deploy your site
+
+### Manual Deployment
+
+1. Build the static export:
+```bash
+npm run build
+```
+
+2. The `out` folder will contain your static site. You can deploy this folder to GitHub Pages or any static hosting service.
+
+### Important: Subpath Configuration
+
+If your repository name is **NOT** `username.github.io` (i.e., you're deploying to a subpath like `username.github.io/repository-name`), you need to:
+
+1. Uncomment the `basePath` and `assetPrefix` lines in `next.config.js`
+2. Replace `'portfolio-website-github'` with your actual repository name
+3. Update the GitHub Actions workflow file (`.github/workflows/deploy.yml`) to set `NEXT_PUBLIC_BASE_PATH` environment variable
+
+Example for repository named `my-portfolio`:
+```javascript
+basePath: '/my-portfolio',
+assetPrefix: '/my-portfolio',
+```
+
+### Troubleshooting Media Files Not Loading
+
+If images and videos are not loading after deployment:
+
+1. **Check basePath configuration**: If deploying to a subpath, ensure `basePath` and `assetPrefix` are correctly set in `next.config.js`
+2. **Verify static export**: Ensure `output: 'export'` is enabled in `next.config.js`
+3. **Check file paths**: All media files should be in the `public/` folder and referenced with paths starting with `/` (e.g., `/images/...`)
+4. **Case sensitivity**: GitHub Pages is case-sensitive. Ensure file extensions match exactly (`.jpg` vs `.JPG`)
+
 ## Customization
 
 ### Adding Projects
