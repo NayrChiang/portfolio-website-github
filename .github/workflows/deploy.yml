@@ -31,12 +31,23 @@ jobs:
       - name: Install dependencies
         run: npm ci
       
+      - name: Set base path
+        id: basepath
+        run: |
+          if [[ "${{ github.repository }}" != "${{ github.repository_owner }}/${{ github.repository_owner }}.github.io" ]]; then
+            echo "base_path=/${{ github.event.repository.name }}" >> $GITHUB_OUTPUT
+          else
+            echo "base_path=" >> $GITHUB_OUTPUT
+          fi
+      
       - name: Build
         run: npm run build
         env:
-          # If your repo name is NOT username.github.io, set this to your repo name
-          # Otherwise, leave it empty or remove this line
-          NEXT_PUBLIC_BASE_PATH: ''
+          # Automatically sets basePath based on repository name
+          # If repo is "username.github.io", base_path will be empty (root deployment)
+          # If repo is "portfolio-website-github", base_path will be "/portfolio-website-github"
+          # To override, modify the "Set base path" step above
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.basepath.outputs.base_path }}
       
       - name: Setup Pages
         uses: actions/configure-pages@v4

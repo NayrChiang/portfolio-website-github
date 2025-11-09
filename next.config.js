@@ -3,10 +3,10 @@ const nextConfig = {
   reactStrictMode: true,
   
   // GitHub Pages configuration
-  // If your repository name is NOT "username.github.io" (i.e., you're deploying to a subpath),
-  // uncomment the following lines and replace 'portfolio-website-github' with your repository name:
-  // basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
-  // assetPrefix: process.env.NEXT_PUBLIC_BASE_PATH || '',
+  // Automatically set by GitHub Actions workflow based on repository name
+  // For manual builds, set NEXT_PUBLIC_BASE_PATH environment variable if deploying to a subpath
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
+  assetPrefix: process.env.NEXT_PUBLIC_BASE_PATH || '',
   
   // Required for GitHub Pages static export
   output: 'export',
